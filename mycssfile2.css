@@ -1,0 +1,34 @@
+
+li{
+    list-style-type : none;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+    font-size: 15px;
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+span{
+    margin-left: 10px;
+}
+
+.class1{
+    position: absolute;
+    right: 30px;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+.class2{
+    position: absolute;
+    right: 0px;
+    margin: 5px 10px;
+}
+i:hover{
+    cursor: pointer;
+}
+#div1{
+    height: 440px;
+    width: 215px;	
+    overflow-y: auto;
+    position: relative;
+}
