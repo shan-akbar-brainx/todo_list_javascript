@@ -29,6 +29,7 @@ i:hover{
 #div1{
     height: 440px;
     width: 215px;	
+    max-width: 800px;
     overflow-y: auto;
     position: relative;
 }
