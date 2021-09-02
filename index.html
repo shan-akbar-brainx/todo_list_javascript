@@ -11,33 +11,38 @@
         <script>
             function addTask(caller){
                 if(event.key === 'Enter'){
+
                     let messageBox = document.getElementById("message");
+                    messageBox.classList.add("red-color");
                     messageBox.innerHTML = "";
+
                     if(caller.value !== ""){
                         let inp = document.createElement('INPUT');
                         inp.setAttribute("type", "checkbox");
                         inp.addEventListener("change", function() {
                             let listItem = this.parentElement;
                             if(this.checked){
-                                listItem.style.textDecoration = "line-through";
+                                listItem.classList.remove("dec-none");
+                                listItem.classList.add("dec-linethrough");
                             }else{
-                                listItem.style.textDecoration = "none";
+                                listItem.classList.remove("dec-linethrough");
+                                listItem.classList.add("dec-none");
                             }
                         });
+
                         let span = document.createElement('span');
                         let listItem = document.createElement('li');
                         let delIcon = document.createElement('i');
                         let editIcon = document.createElement('i');
                         span.innerHTML = caller.value;
                         caller.value = "";
-                        editIcon.classList.add("fa");
-                        editIcon.classList.add("fa-edit");
-                        editIcon.classList.add("class1");
+                        editIcon.classList.add("fa", "fa-edit", "class1");
+
                         editIcon.addEventListener("click", function(){
                             let listItem = this.parentElement;
                             let inp = document.createElement('INPUT');
                             inp.addEventListener("keydown", function (){
-                                
+
                                 if (event.key === 'Enter'){
                                     if(this.value!==""){
                                         messageBox.innerHTML = "";
@@ -47,31 +52,34 @@
                                         listItem.replaceChild(span, this);
                                     }else{
                                         
-                                        messageBox.style.color = "red";
+
                                         messageBox.innerHTML = "Task title can't be empty";
                                     }
-                            }
+                                }
                             });
                             
                             inp.setAttribute("type", "text");
                             inp.value = this.previousSibling.innerHTML;
                             listItem.replaceChild(inp, this.previousSibling);
                         });
-                        delIcon.classList.add("fa");
-                        delIcon.classList.add("fa-trash");
-                        delIcon.classList.add("class2");
+
+
+                        delIcon.classList.add("fa", "fa-trash", "class2");
                         delIcon.addEventListener("click", function(){
                             let listItem = this.parentElement;
                             listItem.remove();
                         });
+
+
                         listItem.appendChild(inp);
                         listItem.appendChild(span);
                         listItem.appendChild(editIcon);
                         listItem.appendChild(delIcon);
                         myCheckList = document.getElementById('list1');
                         myCheckList.appendChild(listItem);
+
                     }else{
-                        messageBox.style.color = "red";
+
                         messageBox.innerHTML = "Task title can't be empty";
                     }
                 }
@@ -79,12 +87,12 @@
         </script>
     </head>
     <body class="bg-info">
-        <div id="div1" class="container bg-white w-75 h-75 mt-5">
+        <div id="todo_div" class="container bg-white w-75 h-75 mt-5">
             <h1 class="text-primary text-center font-weight-bolder">My Todo</h1>
             <div class="form-group">
                 <input type="text" class="form-control w-100" id="inp1" onkeydown="addTask(this)" placeholder="Input task name then tap Enter to add">
             </div>
-            <div id="div2">
+            <div id="tasklist">
                 <p id="message"></p>
                 <ul id="list1">
                     <li></li>

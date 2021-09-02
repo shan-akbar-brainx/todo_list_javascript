@@ -26,10 +26,21 @@ span{
 i:hover{
     cursor: pointer;
 }
-#div1{
+#todo_div{
     height: 440px;
     width: 215px;	
     max-width: 800px;
     overflow-y: auto;
     position: relative;
+}
+.red-color{
+    color: red;
+}
+
+.dec-linethrough{
+    text-decoration: line-through;
+}
+
+.dec-none{
+    text-decoration: none;
 }
