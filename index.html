@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>To Do list</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="mycssfile2.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script>
+            function addTask(caller){
+                if(event.key === 'Enter'){
+
+                    let messageBox = document.getElementById("message");
+                    messageBox.classList.add("red-color");
+                    messageBox.innerHTML = "";
+
+                    if(caller.value !== ""){
+                        let inp = document.createElement('INPUT');
+                        inp.setAttribute("type", "checkbox");
+                        inp.addEventListener("change", function() {
+                            let listItem = this.parentElement;
+                            if(this.checked){
+                                listItem.classList.remove("dec-none");
+                                listItem.classList.add("dec-linethrough");
+                            }else{
+                                listItem.classList.remove("dec-linethrough");
+                                listItem.classList.add("dec-none");
+                            }
+                        });
+
+                        let span = document.createElement('span');
+                        let listItem = document.createElement('li');
+                        let delIcon = document.createElement('i');
+                        let editIcon = document.createElement('i');
+                        span.innerHTML = caller.value;
+                        caller.value = "";
+                        editIcon.classList.add("fa", "fa-edit", "class1");
+
+                        editIcon.addEventListener("click", function(){
+                            let listItem = this.parentElement;
+                            let inp = document.createElement('INPUT');
+                            inp.addEventListener("keydown", function (){
+
+                                if (event.key === 'Enter'){
+                                    if(this.value!==""){
+                                        messageBox.innerHTML = "";
+                                        let span = document.createElement('span');
+                                        span.innerHTML = this.value;
+                                        let listItem = this.parentElement;
+                                        listItem.replaceChild(span, this);
+                                    }else{
+                                        
+
+                                        messageBox.innerHTML = "Task title can't be empty";
+                                    }
+                                }
+                            });
+                            
+                            inp.setAttribute("type", "text");
+                            inp.value = this.previousSibling.innerHTML;
+                            listItem.replaceChild(inp, this.previousSibling);
+                        });
+
+
+                        delIcon.classList.add("fa", "fa-trash", "class2");
+                        delIcon.addEventListener("click", function(){
+                            let listItem = this.parentElement;
+                            listItem.remove();
+                        });
+
+
+                        listItem.appendChild(inp);
+                        listItem.appendChild(span);
+                        listItem.appendChild(editIcon);
+                        listItem.appendChild(delIcon);
+                        myCheckList = document.getElementById('list1');
+                        myCheckList.appendChild(listItem);
+
+                    }else{
+
+                        messageBox.innerHTML = "Task title can't be empty";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body class="bg-info">
+        <div id="todo_div" class="container bg-white w-75 h-75 mt-5">
+            <h1 class="text-primary text-center font-weight-bolder">My Todo</h1>
+            <div class="form-group">
+                <input type="text" class="form-control w-100" id="inp1" onkeydown="addTask(this)" placeholder="Input task name then tap Enter to add">
+            </div>
+            <div id="tasklist">
+                <p id="message"></p>
+                <ul id="list1">
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
